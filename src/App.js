@@ -7,64 +7,9 @@ import {
   Collapse,
   ListItemButton,
 } from '@mui/material';
-import { Folder, Home, InsertDriveFile } from '@mui/icons-material';
 import { useState } from 'react';
+import { menuItems } from './sideMenuItems';
 function App() {
-  const menuItems = [
-    {
-      name: 'Menu Item 1',
-      icon: <Home />,
-    },
-    {
-      name: 'Menu Item 2',
-      icon: <Home />,
-    },
-    {
-      name: 'Dropdown Menu',
-      children: [
-        {
-          key: 10,
-          name: 'Dropdown Item 1',
-          icon: <Folder />,
-        },
-        {
-          key: 11,
-          name: 'Dropdown Item 2',
-          icon: <InsertDriveFile />,
-        },
-      ],
-    },
-    {
-      name: 'Dropdown Menu 2',
-      children: [
-        {
-          key: 13,
-          name: 'Dropdown Item 1',
-          icon: <Folder />,
-        },
-        {
-          key: 14,
-          name: 'Dropdown Item 2',
-          icon: <InsertDriveFile />,
-        },
-      ],
-    },
-    {
-      name: 'Dropdown Menu 3',
-      children: [
-        {
-          key: 15,
-          name: 'Dropdown Item 1',
-          icon: <Folder />,
-        },
-        {
-          key: 16,
-          name: 'Dropdown Item 2',
-          icon: <InsertDriveFile />,
-        },
-      ],
-    },
-  ];
 
   const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -73,7 +18,6 @@ function App() {
 
   const handleClick = () => {
     setOpen(!open)
-    setItemIndex(null)
   };
 
   const handleMenuItemClick = (event, index) => {
@@ -88,7 +32,6 @@ function App() {
     <div className="App">
       <Drawer variant="permanent" anchor="left" >
         <List>
-
           {menuItems.map((menuItem, index) =>
             menuItem.children ? (
               <div key={menuItem.name}>
@@ -119,7 +62,7 @@ function App() {
                           style={{ backgroundColor: selectedSubMenu === child.key ? '#eee' : 'white' }}
                         >
                           <ListItemIcon className="text-red-600">{child.icon} </ListItemIcon>
-                          < ListItemText primary={child.name} />
+                          < ListItemText primary={child.name} className="font-extrabold" />
                         </ListItemButton>
                       ))}
                   </List>
@@ -127,9 +70,7 @@ function App() {
               </div>
             ) : (
               <ListItemButton
-
                 key={menuItem.name}
-
                 onClick={(event) => handleMenuItemClick(event, index)}
                 selected={selectedIndex === index}
                 style={{ backgroundColor: selectedIndex === index ? '#eee' : 'white' }}
