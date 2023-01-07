@@ -6,9 +6,11 @@ import {
   ListItemText,
   Collapse,
   ListItemButton,
+  Button,
 } from '@mui/material';
 import { useState } from 'react';
 import { menuItems } from './sideMenuItems';
+import TestMuiComponent from './components/TestMuiComponent';
 function App() {
 
   const [open, setOpen] = useState(false);
@@ -61,8 +63,8 @@ function App() {
                           selected={selectedSubMenu === child.key}
                           style={{ backgroundColor: selectedSubMenu === child.key ? '#eee' : 'white' }}
                         >
-                          <ListItemIcon className="text-red-600">{child.icon} </ListItemIcon>
-                          < ListItemText primary={child.name} className="font-extrabold" />
+                          <ListItemIcon className="">{child.icon} </ListItemIcon>
+                          < ListItemText primary={child.name} className="text-green-600" />
                         </ListItemButton>
                       ))}
                   </List>
@@ -71,15 +73,18 @@ function App() {
             ) : (
               <ListItemButton
                 key={menuItem.name}
+                className="bg-purple-600"
                 onClick={(event) => handleMenuItemClick(event, index)}
                 selected={selectedIndex === index}
                 style={{ backgroundColor: selectedIndex === index ? '#eee' : 'white' }}
               >
+               
                 <ListItemIcon>{menuItem.icon} </ListItemIcon>
                 <ListItemText primary={menuItem.name} />
               </ListItemButton>))}
         </List>
       </Drawer>
+      <TestMuiComponent />
     </div>
   );
 }
